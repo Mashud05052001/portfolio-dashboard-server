@@ -8,10 +8,13 @@ import handleZodError from '../errors/handleZodError';
 import handleValidationError from '../errors/handleValidationError';
 import handleCastError from '../errors/handleCastError';
 import handleDuplicateError from '../errors/handleDuplicateError';
-import { deleteMultipleImagesFromCloudinary, deleteSingleImageFromCloudinary } from '../utils/deleteImage';
+import {
+  deleteMultipleImagesFromCloudinary,
+  deleteSingleImageFromCloudinary,
+} from '../utils/deleteImage';
 import { TImageFile, TImageFiles } from '../interface/image.interface';
 
-const globalErrorHandler: ErrorRequestHandler = async(err, req, res, next) => {
+const globalErrorHandler: ErrorRequestHandler = async (err, req, res, next) => {
   let statusCode = 500,
     message = `Something went wrong!`,
     errorSources: TErrorSources = [
@@ -21,14 +24,13 @@ const globalErrorHandler: ErrorRequestHandler = async(err, req, res, next) => {
       },
     ];
 
-  
-  // If any image validation error occurs then only the req.file & req.files will be present otherwise it will not present
-  // This deleteFromCloudinary only works if use multer-storage-cloudinary to upload on cloudinary
-  if (req.files && Object.keys(req.files).length > 0) { await deleteMultipleImagesFromCloudinary(req.files as TImageFiles); }
-  if (req.file && Object.keys(req.file).length > 0) { await deleteSingleImageFromCloudinary(req.file as TImageFile); }
-  
+  if (req?.files && Object.keys(req?.files).length > 0) {
+    await deleteMultipleImagesFromCloudinary(req?.files as TImageFiles);
+  }
+  if (req?.file && Object.keys(req?.file).length > 0) {
+    await deleteSingleImageFromCloudinary(req?.file as TImageFile);
+  }
 
-  
   const getModifiedError = () => {
     if (err instanceof ZodError) return handleZodError(err);
     else if (err?.name === 'ValidationError') return handleValidationError(err);
@@ -50,7 +52,6 @@ const globalErrorHandler: ErrorRequestHandler = async(err, req, res, next) => {
     message = err?.message;
     errorSources = [{ path: '', message: err?.message }];
   }
-
 
   res.status(statusCode).json({
     success: false,

@@ -3,8 +3,11 @@
 import catchAsync from '../utils/catchAsync';
 import { AnyZodObject } from 'zod';
 
-const validateRequest = (schema: AnyZodObject) => {
+const validateRequest = (schema: AnyZodObject, skipValidation = false) => {
   return catchAsync(async (req, res, next) => {
+    if (skipValidation && req?.file) {
+      return next();
+    }
     const data = {
       body: req?.body,
     };
@@ -27,7 +30,5 @@ export const validateRequestCookies = (schema: AnyZodObject) => {
     next();
   });
 };
-
-export default validateRequest;
 
 export default validateRequest;

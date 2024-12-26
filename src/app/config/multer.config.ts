@@ -1,7 +1,7 @@
-// This multer config is used if we used multer-storage-cloudinary for uploading files into cloudinary
 import multer from 'multer';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import { cloudinaryUpload } from './cloudinary.config';
+import config from '.';
 
 const removeExtension = (filename: string) => {
   return filename.split('.').slice(0, -1).join('.');
@@ -10,7 +10,7 @@ const removeExtension = (filename: string) => {
 const storage = new CloudinaryStorage({
   cloudinary: cloudinaryUpload,
   params: {
-    folder: 'FoundX',
+    folder: config?.cloudinary_folder_name || "mashud's_portfolio",
     public_id: (_req, file) =>
       Math.random().toString(36).substring(2) +
       '-' +

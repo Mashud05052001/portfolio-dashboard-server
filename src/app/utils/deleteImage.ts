@@ -1,6 +1,6 @@
 // This 2 functions only work when we use multer-storage-cloudinary to upload image
 import { cloudinaryUpload } from '../config/cloudinary.config';
-import { TImageFile, TImageFiles } from '../interfaces/image.interface';
+import { TImageFile, TImageFiles } from '../interface/image.interface';
 
 export const deleteMultipleImagesFromCloudinary = (files: TImageFiles) => {
   const publicIds: string[] = [];
@@ -21,7 +21,7 @@ export const deleteMultipleImagesFromCloudinary = (files: TImageFiles) => {
         } else {
           resolve(result);
         }
-      }
+      },
     );
   });
 };
@@ -37,7 +37,7 @@ export const deleteSingleImageFromCloudinary = (file: TImageFile) => {
         } else {
           resolve(result);
         }
-      }
+      },
     );
   });
 };

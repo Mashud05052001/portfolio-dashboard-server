@@ -1,4 +1,3 @@
-
 import { v2 as cloudinary } from 'cloudinary';
 import config from '.';
 
@@ -9,4 +8,3 @@ cloudinary.config({
 });
 
 export const cloudinaryUpload = cloudinary;
-

@@ -25,7 +25,7 @@ class QueryBuilder<T> {
     }
     return this;
   }
-  
+
   /*
     Range function means filtering products with price or quantity or any other number related fields. Fielda my be single or multiple
     INPUT = Single item dile string & multiple item dile as an array hisebe ashbe
@@ -56,7 +56,7 @@ class QueryBuilder<T> {
     }
     return this;
   }
-  
+
   /*
     Filter function means searching on filed with specific values. That's why we hanve to remove orher query like searchTerm, page, limit, sort, fields property from the query. 
     INPUT = Always object hisebe thakbe cause amra query kei common keys remove kore others query niye kaj kortechi
@@ -69,7 +69,7 @@ class QueryBuilder<T> {
   filter() {
     const copyQuery = { ...this.query };
     const excludeFields = ['searchTerm', 'page', 'limit', 'sort', 'fields'];
-    
+
     excludeFields.forEach((field) => delete copyQuery[field]);
     if (copyQuery) {
       const query: Record<string, unknown> = {};
@@ -83,7 +83,7 @@ class QueryBuilder<T> {
     }
     return this;
   }
-  
+
   /* 
     Sort function means sorting items with single or multiple acsending or descending values
     INPUT  =>  ?fields=fieldName1,-fieldName2
@@ -98,7 +98,6 @@ class QueryBuilder<T> {
     }
     return this;
   }
-
 
   /* 
     Fields function means specifically told the server that those some field is my need only
@@ -116,7 +115,6 @@ class QueryBuilder<T> {
     return this;
   }
 
-  
   //  Pagination => only have 2 properties.  ?limit=numberValue&page=numberValue
   paginate() {
     let limit = defaultLimit;
@@ -143,7 +141,7 @@ class QueryBuilder<T> {
     limit = totalData < limit ? totalData : limit;
     const page = this.query?.page ? Number(this.query?.page) : 1;
     const skip = (page - 1) * limit;
-    const totalPage = Math.ceil(totalData / limit);
+    const totalPage = Math.ceil(totalData / limit) || 0;
     return {
       totalData,
       limit,
@@ -155,7 +153,6 @@ class QueryBuilder<T> {
 }
 
 export default QueryBuilder;
-
 
 /*
 QueryBuilder Usage

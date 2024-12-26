@@ -1,27 +1,23 @@
-/* eslint-disable no-console */
-/*
 import config from '../config';
-import { USER_ROLE, USER_STATUS } from '../modules/User/user.constant';
-import { User } from '../modules/User/user.model';
+import { userRoles } from '../modules/user/user.constant';
+import { User } from '../modules/user/user.model';
+import { bcryptHelper } from './bcryptPassword';
 
 export const seed = async () => {
   try {
-    //atfirst check if the admin exist of not
     const admin = await User.findOne({
-      role: USER_ROLE.ADMIN,
+      role: userRoles?.Admin,
       email: config.admin_email,
-      status: USER_STATUS.ACTIVE,
     });
     if (!admin) {
-      console.log('Seeding started...');
+      const hashedPassword = await bcryptHelper.createHashedPassword(
+        config?.admin_password as string,
+      );
       await User.create({
         name: 'Admin',
-        role: USER_ROLE.ADMIN,
-        email: config.admin_email,
-        password: config.admin_password,
-        profilePhoto: config.admin_profile_photo,
-        mobileNumber: config.admin_mobile_number,
-        status: USER_STATUS.ACTIVE,
+        role: userRoles?.Admin,
+        email: config?.admin_email,
+        password: hashedPassword,
       });
       console.log('Admin created successfully...');
       console.log('Seeding completed...');
@@ -30,4 +26,3 @@ export const seed = async () => {
     console.log('Error in seeding', error);
   }
 };
-*/

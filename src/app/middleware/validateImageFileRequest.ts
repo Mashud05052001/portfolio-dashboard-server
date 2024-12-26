@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextFunction, Request, Response } from 'express';
 import { AnyZodObject, ZodArray, ZodEffects, ZodRecord } from 'zod';
-import { catchAsync } from '../utils/catchAsync';
+import catchAsync from '../utils/catchAsync';
 
 const validateImageFileRequest = (
   schema: AnyZodObject | ZodEffects<any> | ZodArray<any> | ZodRecord<any>,
-  isSingleImageFile: boolean
+  isSingleImageFile: boolean,
 ) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     if (isSingleImageFile) {

@@ -4,7 +4,7 @@ import config from '../config';
 // Add the typs of the data which is stored inside of the token
 export type TJwtPayload = {
   email: string;
-  role: 'user' | 'admin' | 'super-admin';
+  role: 'Admin';
 };
 
 const createJwtToken = (
