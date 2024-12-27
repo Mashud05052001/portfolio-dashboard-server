@@ -7,6 +7,7 @@ const educationSchema = new Schema<TEducation>(
     course: { type: String, required: true },
     institution: { type: String, required: true },
     location: { type: String, required: false },
+    startDate: { type: String, required: true },
     endDate: { type: String, default: null },
     isDeleted: { type: Boolean, default: false },
   },

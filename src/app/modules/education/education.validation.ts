@@ -41,23 +41,29 @@ export const updateEducationValidationSchema = z.object({
           invalid_type_error: 'Order must be a number',
         })
         .optional(),
-      course: z.string({
-        required_error: 'Company name is required',
-        invalid_type_error: 'Company name must be a string',
-      }),
-      institution: z.string({
-        required_error: 'Designation is required',
-        invalid_type_error: 'Designation must be a string',
-      }),
+      course: z
+        .string({
+          required_error: 'Company name is required',
+          invalid_type_error: 'Company name must be a string',
+        })
+        .optional(),
+      institution: z
+        .string({
+          required_error: 'Designation is required',
+          invalid_type_error: 'Designation must be a string',
+        })
+        .optional(),
       location: z
         .string({
           invalid_type_error: 'Location must be a string',
         })
         .optional(),
-      startDate: z.string({
-        required_error: 'Start date is required',
-        invalid_type_error: 'Start date must be a string',
-      }),
+      startDate: z
+        .string({
+          required_error: 'Start date is required',
+          invalid_type_error: 'Start date must be a string',
+        })
+        .optional(),
       endDate: z
         .string({
           invalid_type_error: 'End date must be a string',
