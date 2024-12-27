@@ -2,10 +2,11 @@ import { z } from 'zod';
 
 export const createBlogValidationSchema = z.object({
   body: z.object({
-    order: z.number({
-      required_error: 'Order is required',
-      invalid_type_error: 'Order must be a number',
-    }),
+    order: z
+      .number({
+        invalid_type_error: 'Order must be a number',
+      })
+      .optional(),
     title: z.string({
       required_error: 'Title is required',
       invalid_type_error: 'Title must be a string',

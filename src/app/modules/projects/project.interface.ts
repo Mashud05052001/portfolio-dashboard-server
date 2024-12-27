@@ -9,4 +9,6 @@ export type TProject = {
   githubClient: string;
   githubServer?: string;
   isDeleted: boolean;
+  createdAt: string;
+  updatedAt: string;
 };

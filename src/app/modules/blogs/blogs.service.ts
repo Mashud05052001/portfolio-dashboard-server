@@ -42,13 +42,13 @@ const getAllBlogs = catchAsync(async (req, res) => {
     .sort()
     .paginate();
   const meta = await blogQuery.countTotal();
-  const result = await blogQuery.modelQuery;
+  const data = await blogQuery.modelQuery;
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'All Blogs are retrieved successfully',
-    data: { result, meta },
+    data: { data, meta },
   });
 });
 

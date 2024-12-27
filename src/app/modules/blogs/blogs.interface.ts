@@ -6,4 +6,6 @@ export type TBlog = {
   description: string;
   image: string;
   isDeleted: boolean;
+  createdAt: string;
+  updatedAt: string;
 };

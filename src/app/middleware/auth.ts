@@ -18,7 +18,7 @@ const auth = catchAsync(
       role: decoded?.role,
     });
     if (!user) {
-      throw new AppError(httpStatus.UNAUTHORIZED, 'User not found!');
+      throw new AppError(httpStatus.UNAUTHORIZED, 'Unauthorized Access');
     }
     req.user = decoded as JwtPayload;
     next();

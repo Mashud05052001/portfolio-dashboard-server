@@ -3,4 +3,6 @@ export type TSkillData = {
   image: string;
   name: string;
   isDeleted: boolean;
+  createdAt: string;
+  updatedAt: string;
 };

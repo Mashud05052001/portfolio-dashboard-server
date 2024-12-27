@@ -19,10 +19,6 @@ export const createProjectValidationSchema = z.object({
       required_error: 'Description is required',
       invalid_type_error: 'Description must be a string',
     }),
-    image: z.string({
-      required_error: 'Image is required',
-      invalid_type_error: 'Image must be a string (URL)',
-    }),
     tech: z
       .array(
         z.string({
@@ -68,12 +64,6 @@ export const updateProjectValidationSchema = z.object({
         .string({
           required_error: 'Description is required',
           invalid_type_error: 'Description must be a string',
-        })
-        .optional(),
-      image: z
-        .string({
-          required_error: 'Image is required',
-          invalid_type_error: 'Image must be a string (URL)',
         })
         .optional(),
       tech: z

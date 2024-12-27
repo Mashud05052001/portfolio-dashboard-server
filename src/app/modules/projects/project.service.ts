@@ -34,13 +34,13 @@ const getAllProjects = catchAsync(async (req, res) => {
     .sort()
     .paginate();
   const meta = await projectQuery.countTotal();
-  const result = await projectQuery.modelQuery;
+  const data = await projectQuery.modelQuery;
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'All projects are retrieved successfully',
-    data: { result, meta },
+    data: { data, meta },
   });
 });
 

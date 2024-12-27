@@ -23,12 +23,9 @@ router.post(
       '+password',
     );
     if (!isExist) {
-      throw new AppError(
-        httpStatus?.BAD_REQUEST,
-        'Email not found. You are unable to access it',
-      );
+      throw new AppError(httpStatus?.BAD_REQUEST, 'Email not found.');
     }
-    console.log(isExist?.password, payload?.password);
+
     const isPasswordMatched =
       await bcryptHelper?.compareHashedPasswordWithPlainText(
         payload?.password,
@@ -36,10 +33,7 @@ router.post(
       );
 
     if (!isPasswordMatched) {
-      throw new AppError(
-        httpStatus.BAD_REQUEST,
-        `Password doesn't matched. Please try again`,
-      );
+      throw new AppError(httpStatus.BAD_REQUEST, `Wrong Password`);
     }
     const jwtPayload: TJwtPayload = {
       email: isExist?.email,
@@ -57,10 +51,7 @@ router.post(
       statusCode: httpStatus.OK,
       success: true,
       message: 'User logged in successfully',
-      data: {
-        token: accessToken,
-        ...jwtPayload,
-      },
+      data: accessToken,
     });
   }),
 );

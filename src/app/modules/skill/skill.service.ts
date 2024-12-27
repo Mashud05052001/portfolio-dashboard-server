@@ -34,13 +34,13 @@ const getAllSkills = catchAsync(async (req, res) => {
     .sort()
     .paginate();
   const meta = await skillQuery.countTotal();
-  const result = await skillQuery.modelQuery;
+  const data = await skillQuery.modelQuery;
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'All skills are retrieved successfully',
-    data: { result, meta },
+    data: { data, meta },
   });
 });
 
